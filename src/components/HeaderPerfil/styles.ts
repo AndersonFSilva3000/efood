@@ -18,4 +18,60 @@ export const ContainerLinks = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 4.094rem 0;
+
+  button {
+    background-color: transparent;
+    width: auto;
+  }
+
+  @media (max-width: 51.25rem) {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  @media (max-width: 30rem) {
+    display: none;
+  }
+`
+
+export const Mobile = styled.div`
+  display: none;
+
+  @media (max-width: 30rem) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-top: 4.1rem;
+
+    button {
+      background-color: transparent;
+      border: none;
+      color: ${Colors.darkOrange};
+    }
+
+    img {
+      width: 90%;
+      height: 90%;
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    .cart {
+      position: relative;
+
+      span {
+        font-size: 0.75rem;
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        background-color: ${Colors.darkOrange};
+        color: ${Colors.lightOrange};
+        padding: 5px;
+        border-radius: 0.2rem;
+      }
+    }
+  }
 `

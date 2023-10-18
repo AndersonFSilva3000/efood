@@ -1,6 +1,7 @@
 class ProductIten {
   image: string
-  category?: string[]
+  emphasis?: boolean
+  type?: string
   title: string
   avaliable?: string
   description: string
@@ -8,14 +9,16 @@ class ProductIten {
 
   constructor(
     image: string,
-    category: string[],
+    emphasis: boolean,
+    type: string,
     title: string,
     avaliable: string,
     description: string,
     id: number
   ) {
     this.image = image
-    this.category = category
+    this.emphasis = emphasis
+    this.type = type
     this.title = title
     this.avaliable = avaliable
     this.description = description

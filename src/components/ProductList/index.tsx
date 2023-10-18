@@ -20,7 +20,8 @@ const ProductList = ({ products, cardback, colunsgrid }: Props) => {
             title={product.title}
             image={product.image}
             avaliable={product.avaliable}
-            category={product.category}
+            emphasis={product.emphasis}
+            type={product.type}
             description={product.description}
           />
         ))}

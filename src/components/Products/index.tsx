@@ -8,7 +8,8 @@ import star from '../../assets/images/estrela.png'
 
 export type Props = {
   image: string
-  category?: string[] | undefined
+  emphasis?: boolean
+  type?: string
   title: string
   avaliable?: string
   description: string
@@ -18,7 +19,8 @@ export type Props = {
 const Products = ({
   title,
   avaliable,
-  category,
+  emphasis,
+  type,
   description,
   image
 }: Props) => {
@@ -26,9 +28,8 @@ const Products = ({
     <S.Container>
       <img src={image} alt={title} />
       <S.Infos>
-        {category
-          ? category.map((iten, id) => <Tag key={id}>{iten}</Tag>)
-          : null}
+        {emphasis && <Tag>Destaque da semana</Tag>}
+        {type && <Tag>{type}</Tag>}
       </S.Infos>
       <S.ContainerProduct>
         <S.ContainerTitle>

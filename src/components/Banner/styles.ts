@@ -29,6 +29,10 @@ export const Text = styled.h3`
   z-index: 1;
   position: absolute;
   top: 1.5rem;
+
+  @media (max-width: 51.25rem) {
+    left: 2rem;
+  }
 `
 
 export const NameRestaurant = styled.h3`
@@ -37,4 +41,8 @@ export const NameRestaurant = styled.h3`
   z-index: 1;
   position: absolute;
   bottom: 1.5rem;
+
+  @media (max-width: 51.25rem) {
+    left: 2rem;
+  }
 `

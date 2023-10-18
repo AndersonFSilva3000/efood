@@ -10,7 +10,8 @@ import Header from '../../components/Header'
 const product: ProductIten[] = [
   {
     image: sushi,
-    category: ['Japonesa', 'Destaque da semana'],
+    emphasis: true,
+    type: 'Japonesa',
     title: 'Hioki Sushi',
     avaliable: '4.9',
     description:
@@ -19,7 +20,8 @@ const product: ProductIten[] = [
   },
   {
     image: tattoria,
-    category: ['Italiano'],
+    emphasis: false,
+    type: 'Italiana',
     title: 'La Dolce Vita Trattoria',
     avaliable: '4.6',
     description:
@@ -28,7 +30,8 @@ const product: ProductIten[] = [
   },
   {
     image: tattoria,
-    category: ['Italiano'],
+    emphasis: false,
+    type: 'Italiana',
     title: 'La Dolce Vita Trattoria',
     avaliable: '4.6',
     description:
@@ -37,7 +40,8 @@ const product: ProductIten[] = [
   },
   {
     image: tattoria,
-    category: ['Italiano'],
+    emphasis: false,
+    type: 'Italiana',
     title: 'La Dolce Vita Trattoria',
     avaliable: '4.6',
     description:
@@ -46,7 +50,8 @@ const product: ProductIten[] = [
   },
   {
     image: tattoria,
-    category: ['Italiano'],
+    emphasis: false,
+    type: 'Italiana',
     title: 'La Dolce Vita Trattoria',
     avaliable: '4.6',
     description:
@@ -55,7 +60,8 @@ const product: ProductIten[] = [
   },
   {
     image: tattoria,
-    category: ['Italiano'],
+    emphasis: true,
+    type: 'Italiana',
     title: 'La Dolce Vita Trattoria',
     avaliable: '4.6',
     description:

@@ -11,19 +11,31 @@ export const Carts = styled.section<Omit<Props, 'products' | 'colunsrid'>>`
     color: ${(props) =>
       props.cardback === 'orange' ? Colors.lightOrange : Colors.darkOrange};
   }
+
+  @media (max-width: 51.25rem) {
+    padding: 0 2rem;
+  }
 `
 
 export const List = styled.ul<Omit<Props, 'products' | 'colunsrid'>>`
   display: grid;
   grid-template-columns: ${(props) =>
     props.colunsgrid === 'perfil' ? '1fr 1fr 1fr' : '1fr 1fr'};
-  grid-column-gap: ${(props) =>
-    props.colunsgrid === 'perfil' ? '2rem' : '5rem'};
-  grid-row-gap: ${(props) => (props.colunsgrid === 'perfil' ? '2rem' : '5rem')};
-  max-width: 338px;
+  grid-gap: ${(props) => (props.colunsgrid === 'perfil' ? '2rem' : '5rem')};
 
   img {
     margin: ${(props) =>
       props.colunsgrid === 'perfil' ? '8px 8px 0px 8px' : '0px'};
+    width: ${(props) => (props.colunsgrid === 'perfil' ? '' : '100%')};
+  }
+
+  @media (max-width: 52.5rem) {
+    grid-template-columns: ${(props) =>
+      props.colunsgrid === 'perfil' ? '1fr 1fr' : '1fr 1fr'};
+  }
+
+  @media (max-width: 30rem) {
+    grid-template-columns: ${(props) =>
+      props.colunsgrid === 'perfil' ? '1fr' : '1fr'};
   }
 `
