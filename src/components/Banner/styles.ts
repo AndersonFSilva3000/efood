@@ -18,7 +18,6 @@ export const Image = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
   }
 `
 
@@ -26,7 +25,6 @@ export const Text = styled.h3`
   color: ${Colors.white};
   font-weight: lighter;
   font-size: 2rem;
-  z-index: 1;
   position: absolute;
   top: 1.5rem;
 
@@ -38,7 +36,6 @@ export const Text = styled.h3`
 export const NameRestaurant = styled.h3`
   color: ${Colors.white};
   font-size: 2rem;
-  z-index: 1;
   position: absolute;
   bottom: 1.5rem;
 

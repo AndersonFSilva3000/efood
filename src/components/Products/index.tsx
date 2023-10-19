@@ -5,6 +5,8 @@ import Tag from '../Tag'
 import Button from '../Button'
 
 import star from '../../assets/images/estrela.png'
+import { useDispatch } from 'react-redux'
+import { openModal } from '../store/reducers/reducerModal'
 
 export type Props = {
   image: string
@@ -24,35 +26,53 @@ const Products = ({
   description,
   image
 }: Props) => {
-  return (
-    <S.Container>
-      <img src={image} alt={title} />
-      <S.Infos>
-        {emphasis && <Tag>Destaque da semana</Tag>}
-        {type && <Tag>{type}</Tag>}
-      </S.Infos>
-      <S.ContainerProduct>
-        <S.ContainerTitle>
-          <S.Title>{title}</S.Title>
-          {avaliable ? (
-            <S.Avaliable>
-              <p>{avaliable}</p> <img src={star} alt={title} />
-            </S.Avaliable>
-          ) : null}
-        </S.ContainerTitle>
-        <S.Text>{description}</S.Text>
+  const dispatch = useDispatch()
 
-        {avaliable ? (
-          <Button type="link" title="Vá ao menu de produtos" to="/perfil">
-            Saiba mais
-          </Button>
-        ) : (
-          <Button type="button" title="Vá ao menu de produtos" to="/perfil">
-            Adicionar ao carrinho
-          </Button>
-        )}
-      </S.ContainerProduct>
-    </S.Container>
+  const handleClick = () => {
+    const modalInfo = {
+      title: title,
+      description: description
+    }
+
+    dispatch(openModal(modalInfo))
+  }
+
+  return (
+    <>
+      <S.Container>
+        <img src={image} alt={title} />
+        <S.Infos>
+          {emphasis && <Tag>Destaque da semana</Tag>}
+          {type && <Tag>{type}</Tag>}
+        </S.Infos>
+        <S.ContainerProduct>
+          <S.ContainerTitle>
+            <S.Title>{title}</S.Title>
+            {avaliable ? (
+              <S.Avaliable>
+                <p>{avaliable}</p> <img src={star} alt={title} />
+              </S.Avaliable>
+            ) : null}
+          </S.ContainerTitle>
+          <S.Text>{description}</S.Text>
+
+          {avaliable ? (
+            <Button type="link" title="Vá ao menu de produtos" to="/perfil">
+              Saiba mais
+            </Button>
+          ) : (
+            <Button
+              type="button"
+              title="Vá ao menu de produtos"
+              to="/perfil"
+              onClick={handleClick}
+            >
+              Mais detalhes
+            </Button>
+          )}
+        </S.ContainerProduct>
+      </S.Container>
+    </>
   )
 }
 
