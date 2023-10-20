@@ -9,13 +9,15 @@ import { useDispatch } from 'react-redux'
 import { openModal } from '../store/reducers/reducerModal'
 
 export type Props = {
-  image: string
+  image?: string
   emphasis?: boolean
   type?: string
-  title: string
-  avaliable?: string
+  title?: string
+  avaliable?: number
   description: string
   id?: number
+  foto?: string
+  nome?: string
 }
 
 const Products = ({
@@ -24,7 +26,10 @@ const Products = ({
   emphasis,
   type,
   description,
-  image
+  image,
+  id,
+  foto,
+  nome
 }: Props) => {
   const dispatch = useDispatch()
 
@@ -40,14 +45,14 @@ const Products = ({
   return (
     <>
       <S.Container>
-        <img src={image} alt={title} />
+        <img src={image || foto} alt={title} />
         <S.Infos>
           {emphasis && <Tag>Destaque da semana</Tag>}
           {type && <Tag>{type}</Tag>}
         </S.Infos>
         <S.ContainerProduct>
           <S.ContainerTitle>
-            <S.Title>{title}</S.Title>
+            <S.Title>{title || nome}</S.Title>
             {avaliable ? (
               <S.Avaliable>
                 <p>{avaliable}</p> <img src={star} alt={title} />
@@ -57,7 +62,11 @@ const Products = ({
           <S.Text>{description}</S.Text>
 
           {avaliable ? (
-            <Button type="link" title="Vá ao menu de produtos" to="/perfil">
+            <Button
+              type="link"
+              title="Vá ao menu de produtos"
+              to={`/perfil/${id}`}
+            >
               Saiba mais
             </Button>
           ) : (

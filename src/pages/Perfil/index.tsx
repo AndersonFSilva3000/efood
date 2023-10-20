@@ -1,59 +1,26 @@
 import React from 'react'
-import HeaderPerfil from '../../components/HeaderPerfil'
-import Banner from '../../components/Banner'
-
-import pizza from '../../assets/images/pizza.png'
-import ProductIten from '../../models/ProductIten'
-import ProductList from '../../components/ProductList'
-import Modal from '../../Modal'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { Restaurant } from '../Home'
+import Modal from '../../Modal'
+import Banner from '../../components/Banner'
+import HeaderPerfil from '../../components/HeaderPerfil'
+import ProductCardapio from '../../components/ProductCardapio'
+
 import { RootReducer } from '../../components/store/configureStore'
 import { closeModal } from '../../components/store/reducers/reducerModal'
 
-const list: ProductIten[] = [
-  {
-    image: pizza,
-    title: 'teste 1',
-    description: 'teste de descrição',
-    id: 1
-  },
-  {
-    image: pizza,
-    title: 'teste 2',
-    description: 'teste de descrição 2',
-    id: 2
-  },
-  {
-    image: pizza,
-    title: 'teste 3',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 3
-  },
-  {
-    image: pizza,
-    title: 'Hioki Sushi',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 4
-  },
-  {
-    image: pizza,
-    title: 'Hioki Sushi',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 5
-  },
-  {
-    image: pizza,
-    title: 'Hioki Sushi',
-    description:
-      'A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!',
-    id: 6
-  }
-]
-
 const Perfil = () => {
+  const [menu, setMenu] = React.useState<Restaurant>()
+  const { id } = useParams()
+
+  React.useEffect(() => {
+    fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
+      .then((resp) => resp.json())
+      .then((resp) => setMenu(resp))
+  }, [id])
+
   const isModalOpen = useSelector(
     (state: RootReducer) => state.modal.isOpenModal
   )
@@ -66,18 +33,23 @@ const Perfil = () => {
     return dispatch(closeModal())
   }
 
+  if (!menu) return <h2>carregando</h2>
+
   return (
     <>
       <HeaderPerfil />
-      <Banner />
-      <ProductList products={list} colunsgrid="perfil" cardback="orange" />
+      <Banner title={menu.titulo} type={menu.tipo} urlPhoto={menu.capa} />
+
+      <ProductCardapio cardapio={menu.cardapio} />
+
       {isModalOpen && (
         <Modal
-          urlModal={pizza}
+          urlModal={data.foto}
           isOpen={isModalOpen}
           handleCloseModal={handlecloseModal}
-          title={data.title || ''}
+          title={data.nome || ''}
           description={data.description}
+          id={0}
         />
       )}
     </>

@@ -5,8 +5,9 @@ const modalSlice = createSlice({
   initialState: {
     isOpenModal: false,
     modalData: {
-      title: '',
-      description: ''
+      nome: '',
+      description: '',
+      foto: ''
     }
   },
   reducers: {
@@ -17,8 +18,9 @@ const modalSlice = createSlice({
     closeModal: (state) => {
       state.isOpenModal = false
       state.modalData = {
-        title: '',
-        description: ''
+        nome: '',
+        description: '',
+        foto: ''
       }
     }
   }

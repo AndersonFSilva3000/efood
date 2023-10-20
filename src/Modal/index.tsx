@@ -6,9 +6,14 @@ import Button from '../components/Button'
 type Props = {
   title: string
   description: string
+  price?: number
+  name?: string
+  portion?: string
+  childreanButton?: string
   urlModal?: string
   isOpen: boolean
   handleCloseModal?: () => void
+  id: number
 }
 
 const Modal = ({
@@ -16,7 +21,8 @@ const Modal = ({
   isOpen,
   handleCloseModal,
   title,
-  description
+  description,
+  id
 }: Props) => {
   return (
     <S.Modal className={isOpen ? 'visible' : ''}>

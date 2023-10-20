@@ -1,13 +1,18 @@
 import React from 'react'
 
 import * as S from './styles'
-import banner from '../../assets/images/banner.png'
 
-const Banner = () => (
-  <S.Image style={{ backgroundImage: `url(${banner})` }}>
+type Props = {
+  urlPhoto?: string
+  type?: string
+  title?: string
+}
+
+const Banner = ({ title, type, urlPhoto }: Props) => (
+  <S.Image style={{ backgroundImage: `url(${urlPhoto})` }}>
     <div className="container">
-      <S.Text>Italiana</S.Text>
-      <S.NameRestaurant>La Dolce Vita Trattoria</S.NameRestaurant>
+      <S.Text>{type}</S.Text>
+      <S.NameRestaurant>{title}</S.NameRestaurant>
     </div>
   </S.Image>
 )
