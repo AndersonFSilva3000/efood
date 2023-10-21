@@ -18,6 +18,8 @@ export type Props = {
   id?: number
   foto?: string
   nome?: string
+  portion?: string
+  prince?: number
 }
 
 const Products = ({
@@ -29,17 +31,26 @@ const Products = ({
   image,
   id,
   foto,
-  nome
+  nome,
+  portion,
+  prince
 }: Props) => {
   const dispatch = useDispatch()
 
   const handleClick = () => {
     const modalInfo = {
-      title: title,
-      description: description
+      nome: nome,
+      description: description,
+      foto: foto,
+      portion: portion,
+      preco: prince
     }
 
     dispatch(openModal(modalInfo))
+  }
+
+  const getDescrition = (description: string) => {
+    if (description.length > 120) return description.slice(0, 117) + '...'
   }
 
   return (
@@ -59,25 +70,30 @@ const Products = ({
               </S.Avaliable>
             ) : null}
           </S.ContainerTitle>
-          <S.Text>{description}</S.Text>
 
           {avaliable ? (
-            <Button
-              type="link"
-              title="Vá ao menu de produtos"
-              to={`/perfil/${id}`}
-            >
-              Saiba mais
-            </Button>
+            <>
+              <S.Text>{description}</S.Text>
+              <Button
+                type="link"
+                title="Vá ao menu de produtos"
+                to={`/perfil/${id}`}
+              >
+                Saiba mais
+              </Button>
+            </>
           ) : (
-            <Button
-              type="button"
-              title="Vá ao menu de produtos"
-              to="/perfil"
-              onClick={handleClick}
-            >
-              Mais detalhes
-            </Button>
+            <>
+              <S.Text>{getDescrition(description)}</S.Text>
+              <Button
+                type="button"
+                title="Vá ao menu de produtos"
+                to="/perfil"
+                onClick={handleClick}
+              >
+                Mais detalhes
+              </Button>
+            </>
           )}
         </S.ContainerProduct>
       </S.Container>

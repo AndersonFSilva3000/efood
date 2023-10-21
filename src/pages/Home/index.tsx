@@ -37,7 +37,7 @@ const Home = () => {
   return (
     <>
       <Header />
-      <ProductList products={restaurat} cardback="white" colunsgrid="home" />
+      <ProductList products={restaurat} />
     </>
   )
 }

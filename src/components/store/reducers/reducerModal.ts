@@ -7,7 +7,9 @@ const modalSlice = createSlice({
     modalData: {
       nome: '',
       description: '',
-      foto: ''
+      foto: '',
+      portion: '',
+      preco: 0
     }
   },
   reducers: {
@@ -20,7 +22,9 @@ const modalSlice = createSlice({
       state.modalData = {
         nome: '',
         description: '',
-        foto: ''
+        foto: '',
+        portion: '',
+        preco: 0
       }
     }
   }

@@ -12,6 +12,10 @@ export const Modal = styled.div`
   top: 0;
   left: 0;
 
+  @media (max-width: 52.5rem) {
+    padding: 0 2rem;
+  }
+
   &.visible {
     display: flex;
   }
@@ -36,10 +40,21 @@ export const ModalContent = styled.div`
   column-gap: 1.5rem;
   z-index: 1;
 
+  @media (max-width: 30rem) {
+    flex-direction: column;
+    padding: 2rem 1rem 1rem 1rem;
+  }
+
   img {
     width: 17.5rem;
     height: 17.5rem;
     object-fit: cover;
+
+    @media (max-width: 30rem) {
+      width: 100%;
+      height: 11rem;
+      margin-bottom: 1rem;
+    }
   }
 
   h3 {
@@ -54,5 +69,23 @@ export const ModalContent = styled.div`
 
   ${ButtonContainer} {
     width: auto;
+  }
+`
+export const ButtonClose = styled.button`
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  z-index: 1;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  img {
+    width: 1rem;
+    height: 1rem;
   }
 `

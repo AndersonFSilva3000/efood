@@ -6,14 +6,12 @@ import { Restaurant } from '../../pages/Home'
 
 export type Props = {
   products: Restaurant[]
-  cardback: 'white' | 'orange'
-  colunsgrid: 'perfil' | 'home'
 }
 
-const ProductList = ({ products, cardback, colunsgrid }: Props) => {
+const ProductList = ({ products }: Props) => {
   return (
-    <S.Carts className="container" cardback={cardback} colunsgrid={colunsgrid}>
-      <S.List colunsgrid={colunsgrid} cardback={cardback}>
+    <S.Carts className="container">
+      <S.List>
         {products.map((product) => (
           <ul key={product.id}>
             <Products

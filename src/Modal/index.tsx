@@ -2,40 +2,50 @@ import React from 'react'
 
 import * as S from './styles'
 import Button from '../components/Button'
+import closeImg from '../assets/images/close.svg'
 
 type Props = {
-  title: string
+  nome: string
   description: string
-  price?: number
   name?: string
   portion?: string
-  childreanButton?: string
-  urlModal?: string
+  foto?: string
   isOpen: boolean
   handleCloseModal?: () => void
-  id: number
+  prince: number
 }
 
 const Modal = ({
-  urlModal,
+  foto,
   isOpen,
   handleCloseModal,
-  title,
+  nome,
   description,
-  id
+  portion,
+  prince
 }: Props) => {
+  const formatPrince = (prince = 0) => {
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(prince)
+  }
+
   return (
     <S.Modal className={isOpen ? 'visible' : ''}>
       <S.ModalContent className="container">
+        <S.ButtonClose type="button" onClick={handleCloseModal}>
+          <img src={closeImg} alt="" />
+        </S.ButtonClose>
         <div>
-          <img src={urlModal} alt="" />
+          <img src={`${foto}`} alt="" />
         </div>
         <div>
-          <h3>{title}</h3>
+          <h3>{nome}</h3>
           <p>{description}</p>
-          <p>Serve: de 2 a 3 pessoas</p>
-          <Button type="button" title="Button adicionar ao carrinho">
-            Adicionar ao carrinho - R$ 60,90
+          <p>{portion}</p>
+          <Button type="button">
+            Adicionar ao carrinho - {formatPrince(prince)}
           </Button>
         </div>
       </S.ModalContent>

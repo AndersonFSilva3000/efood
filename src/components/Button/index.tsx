@@ -2,10 +2,10 @@ import React from 'react'
 
 type Props = {
   type: 'button' | 'link'
-  title: string
+  title?: string
   to?: string
   onClick?: () => void | boolean
-  children: string
+  children: React.ReactNode
 }
 
 import * as S from './styles'
@@ -13,7 +13,7 @@ import * as S from './styles'
 const Button = ({ to, children, type, onClick, title }: Props) => {
   if (type === 'button') {
     return (
-      <S.ButtonContainer type="button" title={title} onClick={onClick}>
+      <S.ButtonContainer type="button" onClick={onClick}>
         {children}
       </S.ButtonContainer>
     )
