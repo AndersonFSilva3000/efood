@@ -39,6 +39,7 @@ const Products = ({
 
   const handleClick = () => {
     const modalInfo = {
+      id: id,
       nome: nome,
       description: description,
       foto: foto,

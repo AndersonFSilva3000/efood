@@ -4,7 +4,7 @@ type Props = {
   type: 'button' | 'link'
   title?: string
   to?: string
-  onClick?: () => void | boolean
+  onClick?: () => void | number
   children: React.ReactNode
 }
 

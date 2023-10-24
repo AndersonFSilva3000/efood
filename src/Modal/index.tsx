@@ -3,6 +3,9 @@ import React from 'react'
 import * as S from './styles'
 import Button from '../components/Button'
 import closeImg from '../assets/images/close.svg'
+import { add, isOpenCart } from '../components/store/reducers/reducerCart'
+import { closeModal } from '../components/store/reducers/reducerModal'
+import { useDispatch } from 'react-redux'
 
 type Props = {
   nome: string
@@ -15,6 +18,13 @@ type Props = {
   prince: number
 }
 
+export const formatPrince = (prince = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(prince)
+}
+
 const Modal = ({
   foto,
   isOpen,
@@ -24,11 +34,17 @@ const Modal = ({
   portion,
   prince
 }: Props) => {
-  const formatPrince = (prince = 0) => {
-    return new Intl.NumberFormat('pt-BR', {
-      style: 'currency',
-      currency: 'BRL'
-    }).format(prince)
+  const dispatch = useDispatch()
+
+  const addToCart = () => {
+    const carrinho = {
+      nome: nome || '',
+      foto: foto || '',
+      preco: prince
+    }
+    dispatch(add(carrinho))
+    dispatch(isOpenCart())
+    dispatch(closeModal())
   }
 
   return (
@@ -44,7 +60,7 @@ const Modal = ({
           <h3>{nome}</h3>
           <p>{description}</p>
           <p>{portion}</p>
-          <Button type="button">
+          <Button onClick={addToCart} type="button">
             Adicionar ao carrinho - {formatPrince(prince)}
           </Button>
         </div>
