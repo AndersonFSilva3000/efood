@@ -5,7 +5,7 @@ type cartState = {
     nome: string
     foto: string
     preco: number
-    id?: number
+    id: number
   }[]
   openCart: boolean
 }
@@ -21,7 +21,12 @@ const cartSlice = createSlice({
   reducers: {
     add: (
       state,
-      action: PayloadAction<{ nome: string; foto: string; preco: number }>
+      action: PayloadAction<{
+        nome: string
+        foto: string
+        preco: number
+        id: number
+      }>
     ) => {
       const item = state.items.find((item) => item.nome === action.payload.nome)
 
@@ -41,9 +46,12 @@ const cartSlice = createSlice({
     },
     closeCart: (state) => {
       state.openCart = false
+    },
+    clear: (state) => {
+      state.items = []
     }
   }
 })
 
 export default cartSlice.reducer
-export const { closeCart, isOpenCart, add, remove } = cartSlice.actions
+export const { closeCart, isOpenCart, add, remove, clear } = cartSlice.actions

@@ -40,6 +40,8 @@ export const ModalContent = styled.div`
   column-gap: 1.5rem;
   z-index: 1;
 
+  animation-duration: 0.5s;
+
   @media (max-width: 30rem) {
     flex-direction: column;
     padding: 2rem 1rem 1rem 1rem;

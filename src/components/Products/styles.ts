@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 import { Colors } from '../../styles'
 import { TagContainer } from '../Tag/sytles'
-import Button from '../Button'
 import { ButtonLink } from '../Button/styles'
 
 export const Container = styled.div`

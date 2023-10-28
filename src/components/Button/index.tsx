@@ -1,7 +1,7 @@
 import React from 'react'
 
 type Props = {
-  type: 'button' | 'link'
+  type: 'button' | 'link' | 'submit'
   title?: string
   to?: string
   onClick?: () => void | number
@@ -11,9 +11,9 @@ type Props = {
 import * as S from './styles'
 
 const Button = ({ to, children, type, onClick, title }: Props) => {
-  if (type === 'button') {
+  if (type === 'button' || type === 'submit') {
     return (
-      <S.ButtonContainer type="button" onClick={onClick}>
+      <S.ButtonContainer type={type} onClick={onClick}>
         {children}
       </S.ButtonContainer>
     )

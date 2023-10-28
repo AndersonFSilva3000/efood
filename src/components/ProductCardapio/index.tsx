@@ -54,6 +54,7 @@ const ProductCardapio = ({ cardapio }: Props) => {
           description={data.description}
           portion={data.portion}
           prince={data.preco}
+          id={data.id}
         />
       )}
     </>

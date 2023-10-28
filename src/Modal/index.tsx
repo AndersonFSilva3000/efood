@@ -6,6 +6,7 @@ import closeImg from '../assets/images/close.svg'
 import { add, isOpenCart } from '../components/store/reducers/reducerCart'
 import { closeModal } from '../components/store/reducers/reducerModal'
 import { useDispatch } from 'react-redux'
+import 'animate.css'
 
 type Props = {
   nome: string
@@ -16,6 +17,7 @@ type Props = {
   isOpen: boolean
   handleCloseModal?: () => void
   prince: number
+  id: number
 }
 
 export const formatPrince = (prince = 0) => {
@@ -32,7 +34,8 @@ const Modal = ({
   nome,
   description,
   portion,
-  prince
+  prince,
+  id
 }: Props) => {
   const dispatch = useDispatch()
 
@@ -40,7 +43,8 @@ const Modal = ({
     const carrinho = {
       nome: nome || '',
       foto: foto || '',
-      preco: prince
+      preco: prince,
+      id: id
     }
     dispatch(add(carrinho))
     dispatch(isOpenCart())
@@ -49,7 +53,7 @@ const Modal = ({
 
   return (
     <S.Modal className={isOpen ? 'visible' : ''}>
-      <S.ModalContent className="container">
+      <S.ModalContent className="container animate__animated animate__zoomIn">
         <S.ButtonClose type="button" onClick={handleCloseModal}>
           <img src={closeImg} alt="" />
         </S.ButtonClose>
