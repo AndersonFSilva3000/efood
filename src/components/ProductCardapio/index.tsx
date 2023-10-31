@@ -1,5 +1,5 @@
 import React from 'react'
-import { Restaurant } from '../../pages/Home'
+import { cardapio } from '../../pages/Home'
 import Products from '../Products'
 
 import * as S from './styles'
@@ -11,7 +11,8 @@ import { RootReducer } from '../store/configureStore'
 import { closeModal } from '../store/reducers/reducerModal'
 
 export type Props = {
-  cardapio: Restaurant['cardapio']
+  cardapio: cardapio[]
+  items?: cardapio
 }
 
 const ProductCardapio = ({ cardapio }: Props) => {
@@ -45,16 +46,17 @@ const ProductCardapio = ({ cardapio }: Props) => {
         </S.Menu>
       </S.ContainerMenu>
 
-      {isModalOpen && (
+      {isModalOpen && data && data.preco && (
         <Modal
+          items={data}
+          id={data.id}
+          description={data.descricao}
+          nome={data.nome}
+          portion={data.porcao}
           foto={data.foto}
+          prince={data.preco}
           isOpen={isModalOpen}
           handleCloseModal={handlecloseModal}
-          nome={data.nome}
-          description={data.description}
-          portion={data.portion}
-          prince={data.preco}
-          id={data.id}
         />
       )}
     </>

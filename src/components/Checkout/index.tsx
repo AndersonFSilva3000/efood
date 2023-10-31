@@ -1,6 +1,7 @@
 import React from 'react'
 import * as Yup from 'yup'
 import { useFormik } from 'formik'
+import InputMask from 'react-input-mask'
 
 import Button from '../Button'
 
@@ -10,6 +11,7 @@ import { RootReducer } from '../store/configureStore'
 import { clear, closeCart } from '../store/reducers/reducerCart'
 
 import * as S from './styles'
+import { formatPrince, getTotalPrince } from '../../utils'
 
 type Props = {
   handleClick: () => void
@@ -104,7 +106,7 @@ const Checkout = ({ handleClick }: Props) => {
         // products: []
         products: items.map((item) => ({
           id: item.id,
-          price: item.preco
+          price: item.preco as number
         }))
       })
     }
@@ -195,7 +197,7 @@ const Checkout = ({ handleClick }: Props) => {
                 <div>
                   <label htmlFor="zipCode">CEP</label>
                   <S.AlertError>{formDelivery.errors.zipCode}</S.AlertError>
-                  <input
+                  <InputMask
                     name="zipCode"
                     id="zipCode"
                     type="text"
@@ -207,6 +209,7 @@ const Checkout = ({ handleClick }: Props) => {
                         ? 'error'
                         : ''
                     }
+                    mask={'99999-999'}
                   />
                 </div>
                 <div>
@@ -257,7 +260,9 @@ const Checkout = ({ handleClick }: Props) => {
 
           <S.Form className={paymentPages ? '' : 'dNone'}>
             <form onSubmit={formPayment.handleSubmit}>
-              <h4>Pagamento - Valor a pagar</h4>
+              <h4>
+                Pagamento - Valor a pagar {formatPrince(getTotalPrince(items))}
+              </h4>
               <label htmlFor="cardName">Nome no cartão</label>
               <input
                 type="text"
@@ -269,45 +274,49 @@ const Checkout = ({ handleClick }: Props) => {
               <S.Row>
                 <div className="maxWidth">
                   <label htmlFor="cardNumber">Número no cartão</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="cardNumber"
                     name="cardNumber"
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
+                    mask={'9999 9999 9999 9999'}
                   />
                 </div>
                 <div>
                   <label htmlFor="cardCode">CVV</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="cardCode"
                     name="cardCode"
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
                     className="maxWidth"
+                    mask={'999'}
                   />
                 </div>
               </S.Row>
               <S.Row>
                 <div>
                   <label htmlFor="expirationMonth">Mês de vencimento</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="expirationMonth"
                     name="expirationMonth"
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
+                    mask={'99'}
                   />
                 </div>
                 <div>
                   <label htmlFor="expirationYear">Ano de vencimento</label>
-                  <input
+                  <InputMask
                     type="text"
                     id="expirationYear"
                     name="expirationYear"
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
+                    mask={'99'}
                   />
                 </div>
               </S.Row>

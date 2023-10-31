@@ -7,26 +7,26 @@ import CartContainer from '../CartContainer'
 
 import { remove } from '../store/reducers/reducerCart'
 import { RootReducer } from '../store/configureStore'
-import { formatPrince } from '../../Modal'
 
 import * as S from './styles'
 import bin from '../../assets/images/lixeira.svg'
 import 'animate.css'
+import { formatPrince, getTotalPrince } from '../../utils'
 
 const Cart = () => {
   const { items } = useSelector((state: RootReducer) => state.cart)
   const dispatch = useDispatch()
   const [delivery, setDelivery] = React.useState('cart')
 
-  const removeItem = (nome: string) => {
-    dispatch(remove({ nome }))
+  const removeItem = (id: number) => {
+    dispatch(remove(id))
   }
 
-  const getTotalPrince = () => {
-    return items.reduce((accumulator, currentValue) => {
-      return (accumulator += currentValue.preco!)
-    }, 0)
-  }
+  // const getTotalPrince = () => {
+  //   return items.reduce((accumulator, currentValue) => {
+  //     return (accumulator += currentValue.preco!)
+  //   }, 0)
+  // }
 
   const switchToDeliveryForm = () => {
     setDelivery('delivery')
@@ -50,7 +50,7 @@ const Cart = () => {
                       <h4>{item.nome}</h4>
                       <span>{formatPrince(item.preco)}</span>
                     </div>
-                    <button onClick={() => removeItem(item.nome)}>
+                    <button onClick={() => removeItem(item.id)}>
                       <img src={bin} alt="Image do icone de lixeira" />
                     </button>
                   </S.CartProduct>
@@ -58,7 +58,7 @@ const Cart = () => {
               </ul>
               <S.ContainerPrince>
                 <p>Valor total</p>
-                <p>{formatPrince(getTotalPrince())}</p>
+                <p>{formatPrince(getTotalPrince(items))}</p>
               </S.ContainerPrince>
               <Button type="button" onClick={switchToDeliveryForm}>
                 Continuar com a entrega

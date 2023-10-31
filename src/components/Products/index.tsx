@@ -15,7 +15,7 @@ export type Props = {
   title?: string
   avaliable?: number
   description: string
-  id?: number
+  id: number
   foto?: string
   nome?: string
   portion?: string
@@ -40,16 +40,15 @@ const Products = ({
   const handleClick = () => {
     const modalInfo = {
       id: id,
-      nome: nome,
-      description: description,
-      foto: foto,
-      portion: portion,
+      nome: nome as string,
+      descricao: description,
+      foto: foto as string,
+      porcao: portion as string,
       preco: prince
     }
 
     dispatch(openModal(modalInfo))
   }
-
   const getDescrition = (description: string) => {
     if (description.length > 120) return description.slice(0, 117) + '...'
   }

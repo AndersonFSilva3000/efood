@@ -7,9 +7,13 @@ import ProductCardapio from '../../components/ProductCardapio'
 
 import { useGetRestauranteProfileQuery } from '../../service/api'
 
+type IdParams = {
+  id: string
+}
+
 const Perfil = () => {
-  const { id } = useParams()
-  const { data: menu } = useGetRestauranteProfileQuery(id!)
+  const { id } = useParams() as IdParams
+  const { data: menu } = useGetRestauranteProfileQuery(id)
 
   if (!menu) return <h3>carregando...</h3>
 

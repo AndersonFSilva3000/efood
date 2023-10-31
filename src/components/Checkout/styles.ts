@@ -69,7 +69,7 @@ export const Row = styled.div<inputGroupProps>`
 `
 
 export const ContainerButtons = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 1rem;
   ${ButtonContainer} {
     margin-bottom: 0.5rem;
   }

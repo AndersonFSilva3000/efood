@@ -7,8 +7,11 @@ import { add, isOpenCart } from '../components/store/reducers/reducerCart'
 import { closeModal } from '../components/store/reducers/reducerModal'
 import { useDispatch } from 'react-redux'
 import 'animate.css'
+import { cardapio } from '../pages/Home'
+import { formatPrince } from '../utils'
 
 type Props = {
+  items: cardapio
   nome: string
   description: string
   name?: string
@@ -20,33 +23,31 @@ type Props = {
   id: number
 }
 
-export const formatPrince = (prince = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(prince)
-}
-
 const Modal = ({
-  foto,
+  // foto,
   isOpen,
   handleCloseModal,
-  nome,
-  description,
-  portion,
-  prince,
-  id
+  // nome,
+  // description,
+  // portion,
+  // prince,
+  // id,
+  items
 }: Props) => {
   const dispatch = useDispatch()
 
   const addToCart = () => {
-    const carrinho = {
-      nome: nome || '',
-      foto: foto || '',
-      preco: prince,
-      id: id
-    }
-    dispatch(add(carrinho))
+    // const carrinho = {
+    //   nome: items.nome,
+    //   foto: items.foto,
+    //   preco: items.preco,
+    //   id: items.id
+    //   // nome: nome || '',
+    //   // foto: foto || '',
+    //   // preco: prince,
+    //   // id: id
+    // }
+    dispatch(add(items))
     dispatch(isOpenCart())
     dispatch(closeModal())
   }
@@ -58,14 +59,14 @@ const Modal = ({
           <img src={closeImg} alt="" />
         </S.ButtonClose>
         <div>
-          <img src={`${foto}`} alt="" />
+          <img src={`${items.foto}`} alt="" />
         </div>
         <div>
-          <h3>{nome}</h3>
-          <p>{description}</p>
-          <p>{portion}</p>
+          <h3>{items.nome}</h3>
+          <p>{items.descricao}</p>
+          <p>{items.porcao}</p>
           <Button onClick={addToCart} type="button">
-            Adicionar ao carrinho - {formatPrince(prince)}
+            Adicionar ao carrinho - {formatPrince(items.preco)}
           </Button>
         </div>
       </S.ModalContent>

@@ -1,22 +1,30 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-const initialState = {
+import { cardapio } from '../../../pages/Home'
+
+type Cardapio = {
+  isOpenModal: boolean
+  modalData: cardapio | null
+}
+
+const initialState: Cardapio = {
   isOpenModal: false,
-  modalData: {
-    nome: '',
-    description: '',
-    foto: '',
-    portion: '',
-    preco: 0,
-    id: 0
-  }
+  modalData: null
+  // {
+  //   nome: '',
+  //   description: '',
+  //   foto: '',
+  //   portion: '',
+  //   preco: 0,
+  //   id: 0
+  // }
 }
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    openModal: (state, action) => {
+    openModal: (state, action: PayloadAction<cardapio>) => {
       state.isOpenModal = true
       state.modalData = action.payload
     },

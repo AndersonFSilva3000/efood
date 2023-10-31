@@ -19,6 +19,16 @@ export const List = styled.ul`
   grid-template-columns: 1fr 1fr;
   grid-gap: 5rem;
 
+  .productList3,
+  .productList5 {
+    transform: translateX(-100vh);
+  }
+
+  .productList4,
+  .productList6 {
+    transform: translateX(100vw);
+  }
+
   img {
     width: 100%;
   }

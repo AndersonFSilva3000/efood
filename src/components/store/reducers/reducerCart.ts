@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { cardapio } from '../../../pages/Home'
+
 type cartState = {
-  items: {
-    nome: string
-    foto: string
-    preco: number
-    id: number
-  }[]
+  // items: {
+  //   nome: string
+  //   foto: string
+  //   preco: number
+  //   id: number
+  // }[]
+  items: cardapio[]
   openCart: boolean
 }
 
@@ -21,12 +24,13 @@ const cartSlice = createSlice({
   reducers: {
     add: (
       state,
-      action: PayloadAction<{
-        nome: string
-        foto: string
-        preco: number
-        id: number
-      }>
+      action: PayloadAction<cardapio>
+      // {
+      //   nome: string
+      //   foto: string
+      //   preco: number
+      //   id: number
+      // }
     ) => {
       const item = state.items.find((item) => item.nome === action.payload.nome)
 
@@ -36,10 +40,8 @@ const cartSlice = createSlice({
         alert('Item já existente no carrinho.')
       }
     },
-    remove: (state, action: PayloadAction<{ nome: string }>) => {
-      state.items = state.items.filter((item) => {
-        return item.nome !== action.payload.nome
-      })
+    remove: (state, action: PayloadAction<number>) => {
+      state.items = state.items.filter((item) => item.id !== action.payload)
     },
     isOpenCart: (state) => {
       state.openCart = true
