@@ -10,8 +10,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../store/configureStore'
 import { clear, closeCart } from '../store/reducers/reducerCart'
 
-import * as S from './styles'
 import { formatPrince, getTotalPrince } from '../../utils'
+
+import * as S from './styles'
 
 type Props = {
   handleClick: () => void
@@ -44,9 +45,10 @@ const Checkout = ({ handleClick }: Props) => {
         .required('Campo Obrigatorio'),
       zipCode: Yup.string()
         .min(6, 'O campo precisa ter ao menos 6 caracteres')
-        .required('Campo Obrigatorio'),
+        .required('Campo Obrigatorio')
+        .matches(/^\d{5}-\d{3}$/),
       number: Yup.string()
-        .min(1, 'O campo precisa ter ao menos 6 caracteres')
+        .min(1, 'O campo precisa ter ao menos 1 caracteres')
         .required('Campo Obrigatorio'),
       complement: Yup.string()
     }),
@@ -69,16 +71,20 @@ const Checkout = ({ handleClick }: Props) => {
         .required('Campo Obrigatorio'),
       cardNumber: Yup.string()
         .min(16, 'O campo precisa ter ao menos 16 caracteres')
-        .required('Campo Obrigatorio'),
+        .required('Campo Obrigatorio')
+        .matches(/^[1-9]{4}( [1-9]{4}){3}$/),
       cardCode: Yup.string()
         .min(3, 'O campo precisa ter ao menos 3 caracteres')
-        .required('Campo Obrigatorio'),
+        .required('Campo Obrigatorio')
+        .matches(/^[0-9]+$/),
       expirationMonth: Yup.string()
         .min(2, 'O campo precisa ter ao menos 2 caracteres')
-        .required('Campo Obrigatorio'),
+        .required('Campo Obrigatorio')
+        .matches(/^[0-9]+$/),
       expirationYear: Yup.string()
         .min(2, 'O campo precisa ter ao menos 2 caracteres')
         .required('Campo Obrigatorio')
+        .matches(/^[0-9]+$/)
     }),
     onSubmit: (values) => {
       purchase({
@@ -103,7 +109,6 @@ const Checkout = ({ handleClick }: Props) => {
             }
           }
         },
-        // products: []
         products: items.map((item) => ({
           id: item.id,
           price: item.preco as number
@@ -115,6 +120,22 @@ const Checkout = ({ handleClick }: Props) => {
   const concluded = () => {
     dispatch(clear())
     dispatch(closeCart())
+  }
+
+  const checkInputHasError = (fieldName: string) => {
+    const isTouched = fieldName in formDelivery.touched
+    const isInvalid = fieldName in formDelivery.errors
+    const hasError = isTouched && isInvalid
+
+    return hasError
+  }
+
+  const checkPayInputHasError = (fieldName: string) => {
+    const isTouched = fieldName in formPayment.touched
+    const isInvalid = fieldName in formPayment.errors
+    const hasError = isTouched && isInvalid
+
+    return hasError
   }
 
   return (
@@ -149,100 +170,64 @@ const Checkout = ({ handleClick }: Props) => {
             <form onSubmit={formDelivery.handleSubmit}>
               <h4>Entrega</h4>
               <label htmlFor="receiver">Quem irá receber</label>
-              <S.AlertError>{formDelivery.errors.receiver}</S.AlertError>
-
               <input
                 name="receiver"
                 id="receiver"
                 type="text"
                 onChange={formDelivery.handleChange}
                 onBlur={formDelivery.handleBlur}
-                className={
-                  formDelivery.touched.receiver && formDelivery.errors.receiver
-                    ? 'error'
-                    : ''
-                }
+                className={checkInputHasError('receiver') ? 'error' : ''}
               />
-
               <label htmlFor="address">Endereço</label>
-              <S.AlertError>{formDelivery.errors.address}</S.AlertError>
               <input
                 name="address"
                 id="address"
                 type="text"
                 onChange={formDelivery.handleChange}
                 onBlur={formDelivery.handleBlur}
-                className={
-                  formDelivery.touched.address && formDelivery.errors.address
-                    ? 'error'
-                    : ''
-                }
+                className={checkInputHasError('address') ? 'error' : ''}
               />
-
               <label htmlFor="city">Cidade</label>
-              <S.AlertError>{formDelivery.errors.city}</S.AlertError>
               <input
                 name="city"
                 id="city"
                 type="text"
                 onChange={formDelivery.handleChange}
                 onBlur={formDelivery.handleBlur}
-                className={
-                  formDelivery.touched.city && formDelivery.errors.city
-                    ? 'error'
-                    : ''
-                }
+                className={checkInputHasError('city') ? 'error' : ''}
               />
               <S.Row>
                 <div>
                   <label htmlFor="zipCode">CEP</label>
-                  <S.AlertError>{formDelivery.errors.zipCode}</S.AlertError>
                   <InputMask
                     name="zipCode"
                     id="zipCode"
                     type="text"
                     onChange={formDelivery.handleChange}
                     onBlur={formDelivery.handleBlur}
-                    className={
-                      formDelivery.touched.zipCode &&
-                      formDelivery.errors.zipCode
-                        ? 'error'
-                        : ''
-                    }
+                    className={checkInputHasError('zipCode') ? 'error' : ''}
                     mask={'99999-999'}
                   />
                 </div>
                 <div>
                   <label htmlFor="number">Número</label>
-                  <S.AlertError>{formDelivery.errors.number}</S.AlertError>
                   <input
                     name="number"
                     id="number"
                     type="text"
                     onChange={formDelivery.handleChange}
                     onBlur={formDelivery.handleBlur}
-                    className={
-                      formDelivery.touched.number && formDelivery.errors.number
-                        ? 'error'
-                        : ''
-                    }
+                    className={checkInputHasError('number') ? 'error' : ''}
                   />
                 </div>
               </S.Row>
               <label htmlFor="complement">Complemento (opcional)</label>
-              <S.AlertError>{formDelivery.errors.complement}</S.AlertError>
               <input
                 name="complement"
                 id="complement"
                 type="text"
                 onChange={formDelivery.handleChange}
                 onBlur={formDelivery.handleBlur}
-                className={
-                  formDelivery.touched.complement &&
-                  formDelivery.errors.complement
-                    ? 'error'
-                    : ''
-                }
               />
               <S.ContainerButtons>
                 <Button
@@ -270,6 +255,7 @@ const Checkout = ({ handleClick }: Props) => {
                 name="cardName"
                 onChange={formPayment.handleChange}
                 onBlur={formPayment.handleBlur}
+                className={checkPayInputHasError('cardName') ? 'error' : ''}
               />
               <S.Row>
                 <div className="maxWidth">
@@ -281,6 +267,9 @@ const Checkout = ({ handleClick }: Props) => {
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
                     mask={'9999 9999 9999 9999'}
+                    className={
+                      checkPayInputHasError('cardNumber') ? 'error' : ''
+                    }
                   />
                 </div>
                 <div>
@@ -291,8 +280,11 @@ const Checkout = ({ handleClick }: Props) => {
                     name="cardCode"
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
-                    className="maxWidth"
+                    // className="maxWidth"
                     mask={'999'}
+                    className={
+                      checkPayInputHasError('cardCode') ? 'error maxWidth' : ''
+                    }
                   />
                 </div>
               </S.Row>
@@ -306,6 +298,9 @@ const Checkout = ({ handleClick }: Props) => {
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
                     mask={'99'}
+                    className={
+                      checkPayInputHasError('expirationMonth') ? 'error' : ''
+                    }
                   />
                 </div>
                 <div>
@@ -317,6 +312,9 @@ const Checkout = ({ handleClick }: Props) => {
                     onChange={formPayment.handleChange}
                     onBlur={formPayment.handleBlur}
                     mask={'99'}
+                    className={
+                      checkPayInputHasError('expirationYear') ? 'error' : ''
+                    }
                   />
                 </div>
               </S.Row>

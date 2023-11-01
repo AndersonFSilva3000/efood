@@ -10,8 +10,8 @@ export const CartProduct = styled.li`
 
   img {
     margin-right: 0.8rem;
-    height: 80px;
-    width: 80px;
+    height: 5rem;
+    width: 5rem;
     object-fit: cover;
   }
 

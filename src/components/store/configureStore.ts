@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 
 import modalReducer from './reducers/reducerModal'
 import cartReducer from './reducers/reducerCart'
+
 import api from '../../service/api'
 
 const store = configureStore({

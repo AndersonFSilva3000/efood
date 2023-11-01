@@ -1,7 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-import { cardapio } from '../../../pages/Home'
-
 type Cardapio = {
   isOpenModal: boolean
   modalData: cardapio | null
@@ -10,14 +8,6 @@ type Cardapio = {
 const initialState: Cardapio = {
   isOpenModal: false,
   modalData: null
-  // {
-  //   nome: '',
-  //   description: '',
-  //   foto: '',
-  //   portion: '',
-  //   preco: 0,
-  //   id: 0
-  // }
 }
 
 const modalSlice = createSlice({

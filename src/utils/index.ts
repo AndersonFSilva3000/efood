@@ -1,5 +1,3 @@
-import { cardapio } from '../pages/Home'
-
 export const getTotalPrince = (items: cardapio[]) => {
   return items.reduce((accumulator, currentValue) => {
     if (currentValue.preco) {

@@ -1,10 +1,9 @@
-import React from 'react'
-
-import * as S from './styles'
 import efood from '../../assets/images/logo.png'
 import instagram from '../../assets/images/instagram.svg'
 import facebook from '../../assets/images/facebook.svg'
 import twitter from '../../assets/images/twitter.svg'
+
+import * as S from './styles'
 
 const Footer = () => (
   <S.Footer>

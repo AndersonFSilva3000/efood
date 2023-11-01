@@ -65,11 +65,11 @@ export const Mobile = styled.div`
       span {
         font-size: 0.75rem;
         position: absolute;
-        top: -10px;
-        right: -5px;
+        top: -0.625rem;
+        right: -0.313rem;
         background-color: ${Colors.darkOrange};
         color: ${Colors.lightOrange};
-        padding: 5px;
+        padding: 0.313rem;
         border-radius: 0.2rem;
       }
     }

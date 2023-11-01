@@ -33,15 +33,15 @@ export const Form = styled.div`
     border: none;
     background-color: ${Colors.lightOrange};
     margin: 0.5rem 0;
-    padding: 8px;
+    padding: 0.5rem;
     font-size: 0.875rem;
     font-weight: bold;
     outline: none;
 
     &.error {
-      color: #d11212;
-      box-shadow: inset 0 0 0 1.5px #d11212;
-      border: 1px solid ${Colors.lightOrange};
+      color: rgb(150, 0, 0);
+      box-shadow: inset 0 0 0 0.094rem rgb(150, 0, 0);
+      border: 0.063rem solid ${Colors.lightOrange};
     }
   }
 
@@ -73,9 +73,4 @@ export const ContainerButtons = styled.div`
   ${ButtonContainer} {
     margin-bottom: 0.5rem;
   }
-`
-
-export const AlertError = styled.span`
-  color: rgb(150, 0, 0);
-  font-size: 0.75rem;
 `

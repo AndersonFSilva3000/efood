@@ -5,7 +5,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import Products from '../Products'
 
 import * as S from './styles'
-import { Restaurant } from '../../pages/Home'
 
 export type Props = {
   products: Restaurant[]
@@ -19,52 +18,20 @@ const ProductList = ({ products }: Props) => {
       '(max-width: 799px)': function () {
         gsap.to('.productList3', {
           x: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: '.productList2',
-            markers: true,
-            start: 'top: 500px',
-            end: 'bottom: 350px',
-            scrub: true,
-            endTrigger: '.productList3'
-          }
+          opacity: 1
         })
         gsap.to('.productList4', {
           x: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: '.productList3',
-            markers: true,
-            start: 'top: 500px',
-            end: 'bottom: 350px',
-            scrub: true,
-            endTrigger: '.productList4'
-          }
+          opacity: 1
         })
         gsap.to('.productList5', {
           x: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: '.productList4',
-            markers: true,
-            start: 'top: 500px',
-            end: 'bottom:350px',
-            scrub: true,
-            endTrigger: '.productList5'
-          }
+          opacity: 1
         })
 
         gsap.to('.productList6', {
           x: 0,
-          opacity: 1,
-          scrollTrigger: {
-            trigger: '.productList5',
-            endTrigger: '.productList6',
-            markers: true,
-            start: 'top: 500px',
-            end: 'bottom: 350px',
-            scrub: true
-          }
+          opacity: 1
         })
       }
     })
@@ -74,9 +41,9 @@ const ProductList = ({ products }: Props) => {
       opacity: 1,
       scrollTrigger: {
         trigger: '.productList2',
-        // markers: true,
-        start: 'top: -200px',
-        end: 'bottom: -200px',
+        endTrigger: '.productList4',
+        start: 'top: 100px',
+        end: 'bottom: 50px',
         scrub: true
       }
     })
@@ -84,10 +51,10 @@ const ProductList = ({ products }: Props) => {
       x: 0,
       opacity: 1,
       scrollTrigger: {
-        trigger: '.productList6',
-        // markers: true,
-        start: 'top: 100px',
-        end: 'bottom: 100px',
+        trigger: '.productList4',
+        endTrigger: '.productList6',
+        start: 'top: 0px',
+        end: 'bottom: -200px',
         scrub: true
       }
     })

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import 'animate.css'
 
 import Button from '../Button'
 import Checkout from '../Checkout'
@@ -7,26 +8,19 @@ import CartContainer from '../CartContainer'
 
 import { remove } from '../store/reducers/reducerCart'
 import { RootReducer } from '../store/configureStore'
+import { formatPrince, getTotalPrince } from '../../utils'
 
 import * as S from './styles'
 import bin from '../../assets/images/lixeira.svg'
-import 'animate.css'
-import { formatPrince, getTotalPrince } from '../../utils'
 
 const Cart = () => {
   const { items } = useSelector((state: RootReducer) => state.cart)
-  const dispatch = useDispatch()
   const [delivery, setDelivery] = React.useState('cart')
+  const dispatch = useDispatch()
 
   const removeItem = (id: number) => {
     dispatch(remove(id))
   }
-
-  // const getTotalPrince = () => {
-  //   return items.reduce((accumulator, currentValue) => {
-  //     return (accumulator += currentValue.preco!)
-  //   }, 0)
-  // }
 
   const switchToDeliveryForm = () => {
     setDelivery('delivery')

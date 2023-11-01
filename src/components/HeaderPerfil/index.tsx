@@ -1,13 +1,15 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
-
-import * as S from './styles'
-import backgroundHP from '../../assets/images/perfil.png'
-import logo from '../../assets/images/logo.png'
-import Button from '../Button'
 import { useDispatch, useSelector } from 'react-redux'
+
+import Button from '../Button'
+
 import { isOpenCart } from '../store/reducers/reducerCart'
 import { RootReducer } from '../store/configureStore'
+
+import logo from '../../assets/images/logo.png'
+import backgroundHP from '../../assets/images/perfil.png'
+
+import * as S from './styles'
 
 const HeaderPerfil = () => {
   const { items } = useSelector((state: RootReducer) => state.cart)
@@ -16,8 +18,6 @@ const HeaderPerfil = () => {
   const openCart = () => {
     dispatch(isOpenCart())
   }
-
-  console.log()
 
   return (
     <S.ContainerHeaderP style={{ backgroundImage: `url(${backgroundHP})` }}>

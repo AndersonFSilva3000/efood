@@ -1,12 +1,13 @@
-import React from 'react'
+import { useDispatch } from 'react-redux'
 
-import * as S from './styles'
 import Tag from '../Tag'
 import Button from '../Button'
 
-import star from '../../assets/images/estrela.png'
-import { useDispatch } from 'react-redux'
 import { openModal } from '../store/reducers/reducerModal'
+
+import star from '../../assets/images/estrela.png'
+
+import * as S from './styles'
 
 export type Props = {
   image?: string

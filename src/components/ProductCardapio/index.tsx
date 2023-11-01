@@ -1,14 +1,12 @@
-import React from 'react'
-import { cardapio } from '../../pages/Home'
-import Products from '../Products'
-
-import * as S from './styles'
-
-//modal
-import Modal from '../../Modal'
 import { useDispatch, useSelector } from 'react-redux'
+
+import Products from '../Products'
+import Modal from '../../Modal'
+
 import { RootReducer } from '../store/configureStore'
 import { closeModal } from '../store/reducers/reducerModal'
+
+import * as S from './styles'
 
 export type Props = {
   cardapio: cardapio[]

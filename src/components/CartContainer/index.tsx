@@ -1,10 +1,10 @@
-import React from 'react'
-
-import * as S from './styles'
-import 'animate.css'
 import { useDispatch, useSelector } from 'react-redux'
+import 'animate.css'
+
 import { RootReducer } from '../store/configureStore'
 import { closeCart } from '../store/reducers/reducerCart'
+
+import * as S from './styles'
 
 type Props = {
   children: JSX.Element

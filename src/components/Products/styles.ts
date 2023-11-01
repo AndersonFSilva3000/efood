@@ -17,13 +17,13 @@ export const Container = styled.div`
 
   img {
     object-fit: cover;
-    max-height: 217px;
+    max-height: 13.563rem;
   }
 `
 
 export const ContainerProduct = styled.div`
   padding: 0.5rem 0.5rem 0.75rem 0.5rem;
-  border: 1px solid ${Colors.darkOrange};
+  border: 0.063rem solid ${Colors.darkOrange};
   border-top: none;
   height: 100%;
   display: flex;

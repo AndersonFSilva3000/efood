@@ -1,14 +1,15 @@
-import React from 'react'
-
-import * as S from './styles'
-import Button from '../components/Button'
-import closeImg from '../assets/images/close.svg'
-import { add, isOpenCart } from '../components/store/reducers/reducerCart'
-import { closeModal } from '../components/store/reducers/reducerModal'
 import { useDispatch } from 'react-redux'
 import 'animate.css'
-import { cardapio } from '../pages/Home'
+
+import Button from '../components/Button'
+
+import { add, isOpenCart } from '../components/store/reducers/reducerCart'
+import { closeModal } from '../components/store/reducers/reducerModal'
 import { formatPrince } from '../utils'
+
+import closeImg from '../assets/images/close.svg'
+
+import * as S from './styles'
 
 type Props = {
   items: cardapio
@@ -23,30 +24,10 @@ type Props = {
   id: number
 }
 
-const Modal = ({
-  // foto,
-  isOpen,
-  handleCloseModal,
-  // nome,
-  // description,
-  // portion,
-  // prince,
-  // id,
-  items
-}: Props) => {
+const Modal = ({ isOpen, handleCloseModal, items }: Props) => {
   const dispatch = useDispatch()
 
   const addToCart = () => {
-    // const carrinho = {
-    //   nome: items.nome,
-    //   foto: items.foto,
-    //   preco: items.preco,
-    //   id: items.id
-    //   // nome: nome || '',
-    //   // foto: foto || '',
-    //   // preco: prince,
-    //   // id: id
-    // }
     dispatch(add(items))
     dispatch(isOpenCart())
     dispatch(closeModal())

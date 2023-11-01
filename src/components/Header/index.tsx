@@ -1,5 +1,3 @@
-import React from 'react'
-
 import { HeaderContainer, Title } from './styles'
 import PhotoHome from '../../assets/images/home.png'
 import efood from '../../assets/images/logo.png'

@@ -21,12 +21,14 @@ export const List = styled.ul`
 
   .productList3,
   .productList5 {
-    transform: translateX(-100vh);
+    transform: translateX(-20vh);
+    opacity: 0;
   }
 
   .productList4,
   .productList6 {
-    transform: translateX(100vw);
+    transform: translateX(20vh);
+    opacity: 0;
   }
 
   img {
@@ -35,6 +37,18 @@ export const List = styled.ul`
 
   @media (max-width: 52.5rem) {
     grid-template-columns: 1fr 1fr;
+
+    .productList3,
+    .productList5 {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .productList4,
+    .productList6 {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 
   @media (max-width: 30rem) {
